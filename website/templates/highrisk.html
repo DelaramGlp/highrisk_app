@@ -1,0 +1,126 @@
+{% extends "base.html" %} {% block title %} High Risk AI {% endblock %} 
+{% block content %} 
+
+			
+		<!-- Header -->
+				<div class="row">
+					
+					<!-- Logo
+					<div class="col-lg-1 col-sm-3 col-3 order-1">
+						<div class="logo_container">
+						<div class="logo"><a href="https://w3id.org/airo"><img src="https://raw.githubusercontent.com/DelaramGlp/airo/main/figures/airo-logo.png" width="100" class="img-responsive home" ></a></div>
+						</div>
+					</div>
+				</div>	-->
+	
+		<!-- Title -->
+			<h1 class="text-black" align-items="centre"> Is My AI System High-Risk? </h1>
+			</div>
+			<br>
+					
+       
+         <h5> Introduction </h5>
+         <p> This tool assists you determine whether an AI system is High-Risk according to Annex III of the <a href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=celex%3A52021PC0206">EU AI Act</a>. </p>
+         <h5>Disclaimer</h5>
+         <p> This tool only offers guidance and does not provide any legal advise. </p>
+         <p> This tool does not determine prohibited AI practices. Before using the tool, ensure your AI system does not fall under the prohibited category of AI defined in Article 5. </p>
+		 <h5>  Licence </h5>
+		 <p> The tool is available under<a href="https://creativecommons.org/licenses/by-nc/4.0/"> CC BY-NC 4.0 </a></p>
+		 <h3> Checklist </h3>
+        
+        <form method="POST">
+			<div>
+			<label>System's name:</label>
+			<input name="system" id="system" placeholder="Enter system's name">
+			</div>
+
+ 		 	<div class="mb-3">
+    			<label> 1. What domain is the AI system intended to be used in?</label>
+				<br>
+				
+	
+					<select name="domain" id="domain" class="form-select form-select-lg mb-3" style="width: 350px"  method="POST">
+	
+							<option value="Any"> Any </option>
+							{% for domainTerm, domainLabel in domains %}
+							<option value="{{domainTerm}}"> {{ domainLabel }}</option>
+							{% endfor %} 
+						</select>
+					
+				
+ 		 	</div>
+ 		 	
+ 		 	<div class="mb-3">
+    			<label>2. What is the intended purpose of the AI system?</label>
+				<br>
+    			<select name="purpose" id="purpose" style="width: 350px" method="POST">
+						<option value="Any"> Any </option>
+						{% for purposeTerm, purposeLabel in purposes %}
+						<option value="{{purposeTerm}}"> {{ purposeLabel }}</option>
+						{% endfor %} 
+					</select>
+				</div>
+
+				
+		
+			<div class="mb-3">
+    			<label for="capability" class="form-label"> 3. What is the capability of the AI system? </label>
+				<br>
+				<select name="capability" id="capability" class="form-select" style="width: 350px" method="POST">
+						<option value="Any"> Any </option>
+						{% for capabilityTerm, capabilityLabel in capabilities %}
+						<option value="{{capabilityTerm}}"> {{ capabilityLabel }}</option>
+						{% endfor %} 
+					</select>
+ 		 	</div>   
+
+ 		 	
+ 		 	<div class="mb-3">
+    			<label for="user" class="form-label">4. Who is the intended user of the AI system?</label>
+				<br>
+    			<select name="user" id="user" class="form-select" style="width: 350px" method="POST">
+					<option value="Any"> Any </option>
+						{% for userTerm, userLabel in users %}
+					<option value="{{userTerm}}"> {{ userLabel }}</option>
+						{% endfor %} 
+					</select> 
+					 
+ 		 	</div>
+ 		 	
+			 
+ 		
+ 		 	<div class="mb-3">
+    			<label for="subject" class="form-label"> 5. Who is the subject of the AI system? </label>
+				<br>
+    			<select name="subject" id="subject" class="form-select" style="width: 350px" method="POST">
+           			<option value="Any"> Any </option>
+						{% for subjectTerm, subjectLabel in subjects %}
+					<option value="{{subjectTerm}}"> {{ subjectLabel }}</option>
+						{% endfor %} 
+            	</select>
+ 		 	</div>  
+ 		 	
+ 		 	<!-- <div class="mb-3">
+    			<label for="environment" class="form-label"> 4. In which environment is the AI system used? </label>
+    			<select name="environment" id="idenvironment" class="form-control">
+           			<option value="myEnv"> No Specific Environment </option>
+           			<option value="InvestigationOfCriminalOffences"> Investigation of Criminal Offences </option>
+           			<option value="ProsecutionOfCriminalOffences"> Prosecution of Criminal Offences </option>
+           			<option value="DetectionOfCriminalOffences"> Detection of Criminal Offences </option>			
+            	</select>
+ 		 	</div>-->
+		<br>
+	
+		<button type="submit" class="btn btn-warning">Check whether your AI system is high-risk</button>
+
+		<div id="response" class="alert alert-primary">
+		{% for message in get_flashed_messages() %}
+			<p> {{message}}</p>	
+			<button type="button" class="close" data-dismiss="alert">
+				<span aria-hidden="true">&times;</span>
+			  </button>
+		{% endfor%}
+			</div>
+        </form>
+
+  {% endblock %}

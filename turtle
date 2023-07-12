@@ -1,0 +1,8 @@
+@prefix airo: <https://w3id.org/airo#> .
+@prefix vair: <https://w3id.org/vair#> .
+
+<http://example.org/hfi> a airo:AISystem ;
+    airo:hasCapability vair:Profiling ;
+    airo:hasPurpose vair:BiometricIdentification ;
+    airo:isUsedWithinDomain vair:Education .
+
