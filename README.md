@@ -13,7 +13,7 @@ To run the application:
 
 ## Disclaimer
 
-This tool only offers guidance and does not provide any legal advise. 
+This tool only offers guidance and does not provide any legal advice. 
 
 This tool does not determine prohibited AI practices. Before using the tool, ensure your AI system does not fall under the prohibited category of AI defined in Article 5. 
 
