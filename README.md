@@ -18,7 +18,7 @@ This tool only offers guidance and does not provide any legal advice.
 This tool does not determine prohibited AI practices. Before using the tool, ensure your AI system does not fall under the prohibited category of AI defined in Article 5. 
 
 ## Licence
-The tool is available under [href="https://creativecommons.org/licenses/by-nc/4.0/"](CC BY-NC 4.0)
+The tool is available under the [MIT License (MIT)](https://mit-license.org/).
 
 ## Referencing
 To cite this work please use: 
