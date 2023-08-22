@@ -47,7 +47,8 @@ def highrisk():
                     PREFIX airo:<https://w3id.org/airo#>
                     SELECT ?domain ?label
 	                WHERE {?domain rdfs:subClassOf* airo:Domain.
-                    ?domain  skos:prefLabel ?label .}"""
+                    ?domain  skos:prefLabel ?label .}
+                    order by asc(UCASE(str(?domain)))"""
    
     domains = []
     for row in vair_use.query(domain_query):
@@ -62,7 +63,7 @@ def highrisk():
                     SELECT ?purpose ?label
 	                WHERE {?purpose rdfs:subClassOf* airo:Purpose.
                            ?purpose  skos:prefLabel ?label .
-                   }"""
+                   }order by asc(UCASE(str(?purpose)))"""
    
     purposes = []
     for row in vair_use.query(purpose_query):
@@ -77,10 +78,7 @@ def highrisk():
                     SELECT ?capability ?label
 	                WHERE {?capability rdfs:subClassOf* airo:Capability.
                             ?capability skos:prefLabel ?label .
-                        
-                           
-
-                    }
+                    } order by asc(UCASE(str(?capability)))
 
 """
     capabilities = []
@@ -96,7 +94,7 @@ def highrisk():
                     SELECT ?user ?label
 	                WHERE {?user rdfs:subClassOf* airo:AIUser.
                             ?user  skos:prefLabel ?label .
-                    }
+                    } order by asc(UCASE(str(?user)))
 
 """
     users = []
@@ -114,7 +112,7 @@ def highrisk():
                     SELECT ?subject ?label
 	                WHERE {?subject rdfs:subClassOf* airo:AISubject.
                             ?subject  skos:prefLabel ?label .
-                    }
+                    } order by asc(UCASE(str(?subject)))
 
 """
     subjects = []
@@ -222,7 +220,7 @@ def highrisk():
 
         #Print sh:message (AI Act reference) if the system is high-risk
         if empty==True :
-            flash("Please Provide more details about your AI System")    
+            flash("Please Provide more details about your AI system")    
         elif conforms == False:
              resultMessage = report.objects(predicate=URIRef("http://www.w3.org/ns/shacl#resultMessage"))
              for m in resultMessage:
