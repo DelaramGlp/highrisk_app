@@ -3,7 +3,7 @@
 
 			
 		<!-- Header -->
-				<div class="row">
+		
 					
 					<!-- Logo
 					<div class="col-lg-1 col-sm-3 col-3 order-1">
@@ -14,89 +14,84 @@
 				</div>	-->
 	
 		<!-- Title -->
-			<h1 class="text-black" align-items="centre"> Is My AI System High-Risk? </h1>
-			</div>
-			<br>
-					
-       
-         <h5> Introduction </h5>
-         <p> This tool assists you determine whether an AI system is High-Risk according to Annex III of the <a href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=celex%3A52021PC0206">EU AI Act</a>. </p>
-         <h5>Disclaimer</h5>
-         <p> This tool only offers guidance and does not provide any legal advise. </p>
-         <p> This tool does not determine prohibited AI practices. Before using the tool, ensure your AI system does not fall under the prohibited category of AI defined in Article 5. </p>
-		 <h5>  Licence </h5>
-		 <p> The tool is available under<a href="https://creativecommons.org/licenses/by-nc/4.0/"> CC BY-NC 4.0 </a></p>
-		 <h3> Checklist </h3>
-        
+		
+		<div class="custom-box">
+			<h1 class="text"> Is My AI System High-Risk? </h1>
+		
+         <p class="text"> A tool to assist you determine whether an AI system is High-Risk according to Annex III of the <a href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=celex%3A52021PC0206">EU AI Act</a>. </p>
+		
+		 <lable class="text" style="font-size: large ; color: gray"> Please fill out the high-risk AI checklist </lable>
+		
+        <div class="custom-main-box"> <!--------------------------->
         <form method="POST">
-			<div>
-			<label>System's name:</label>
-			<input name="system" id="system" placeholder="Enter system's name">
-			</div>
-
- 		 	<div class="mb-3">
-    			<label> 1. What domain is the AI system intended to be used in?</label>
-				<br>
-				
-	
-					<select name="domain" id="domain" class="form-select form-select-lg mb-3" style="width: 350px"  method="POST">
-	
-							<option value="Any"> Any </option>
+			<label class="form-font"> My AI system </label> <input name="system" id="system" class="custom-small-box" style="width: 350px" placeholder="Enter system's name">
+			<br>
+ 		 	<!----Intended Purpose--->
+    			<label class="form-font"> is  intended to be used in the domain of   </label>
+			
+					<select name="domain" id="domain" class="custom-select2"  method="POST">
+							<option selected="selected" value="None"></option>
 							{% for domainTerm, domainLabel in domains %}
 							<option value="{{domainTerm}}"> {{ domainLabel }}</option>
 							{% endfor %} 
+							<option value="Other"> Other </option>
 						</select>
 					
-				
- 		 	</div>
+				<label class="form-font">,</label>
+ 		 	<!------>
  		 	
  		 	<div class="mb-3">
-    			<label>2. What is the intended purpose of the AI system?</label>
-				<br>
-    			<select name="purpose" id="purpose" style="width: 350px" method="POST">
-						<option value="Any"> Any </option>
+    			<label class="form-font">for the purpose of </label>
+    			<select name="purpose" id="purpose" class="custom-select2" style="width: 600px"  method="POST">
+						<option selected="selected" value="None"></option>
 						{% for purposeTerm, purposeLabel in purposes %}
 						<option value="{{purposeTerm}}"> {{ purposeLabel }}</option>
 						{% endfor %} 
+						<option value="Other"> Other </option>
 					</select>
+				<label class="form-font">,</label>	
 				</div>
-
+			
 				
 		
 			<div class="mb-3">
-    			<label for="capability" class="form-label"> 3. What is the capability of the AI system? </label>
-				<br>
-				<select name="capability" id="capability" class="form-select" style="width: 350px" method="POST">
-						<option value="Any"> Any </option>
+    			<label for="capability" class="form-font"> has the capability of   </label>
+				<select name="capability" id="capability" class="custom-select2"  method="POST">
+						<option selected="selected" value="None"></option>
 						{% for capabilityTerm, capabilityLabel in capabilities %}
 						<option value="{{capabilityTerm}}"> {{ capabilityLabel }}</option>
 						{% endfor %} 
+						<option value="Other"> Other </option>
 					</select>
+				<label class="form-font">.</label>	
  		 	</div>   
 
  		 	
  		 	<div class="mb-3">
-    			<label for="user" class="form-label">4. Who is the intended user of the AI system?</label>
-				<br>
-    			<select name="user" id="user" class="form-select" style="width: 350px" method="POST">
-					<option value="Any"> Any </option>
-						{% for userTerm, userLabel in users %}
+    			<label for="user" class="form-font">The system is intended to be used by   </label>
+
+    			<select name="user" id="user" class="custom-select2"  method="POST">
+					<option selected="selected" value="None"></option>
+					{% for userTerm, userLabel in users %}
 					<option value="{{userTerm}}"> {{ userLabel }}</option>
 						{% endfor %} 
+					<option value="Other"> Other </option>
 					</select> 
-					 
+					
+				<label class="form-font">,</label>		 
  		 	</div>
  		 	
 			 
- 		
- 		 	<div class="mb-3">
-    			<label for="subject" class="form-label"> 5. Who is the subject of the AI system? </label>
-				<br>
-    			<select name="subject" id="subject" class="form-select" style="width: 350px" method="POST">
-           			<option value="Any"> Any </option>
+
+ 		 	<div>
+    			<label for="subject" class="form-font">& the entity who is subjected to its use is  </label>
+				
+    			<select name="subject" id="subject" class="custom-select2" method="POST">
+					<option selected="selected" value="None"></option>
 						{% for subjectTerm, subjectLabel in subjects %}
 					<option value="{{subjectTerm}}"> {{ subjectLabel }}</option>
 						{% endfor %} 
+						<option value="Other"> Other </option>
             	</select>
  		 	</div>  
  		 	
@@ -110,17 +105,35 @@
             	</select>
  		 	</div>-->
 		<br>
+		<div class="wrapper">
+		<button type="submit" class="custom-button"> Check whether your AI system is high-risk</button>
+		
+	</div> <!--------------------------->
 	
-		<button type="submit" class="btn btn-warning">Check whether your AI system is high-risk</button>
-
-		<div id="response" class="alert alert-primary">
+		<div id="response" class="text" style="text-align: left;" >	
 		{% for message in get_flashed_messages() %}
-			<p> {{message}}</p>	
+			<h5> {{message}}</h5>	
 			<button type="button" class="close" data-dismiss="alert">
 				<span aria-hidden="true">&times;</span>
 			  </button>
 		{% endfor%}
 			</div>
         </form>
-
+	</div>	
+		<div class="text" style="text-align: left;">
+		<h5>Disclaimer</h5>
+         <p> This tool only offers guidance and does not provide any legal advice. </p>
+         <p> This tool does not determine prohibited AI practices. Before using the tool, ensure your AI system does not fall under the prohibited category of AI defined in Article 5. </p>
+		 <h5>  Cite </h5>
+		 <p> To cite please use: Delaram Golpayegani, Harshvardhan J. Pandit, and Dave Lewis. 
+			<a href="https://dl.acm.org/doi/abs/10.1145/3593013.3594050">"To Be High-Risk, or Not To Be—Semantic Specifications and Implications of the AI Act’s High-Risk AI Applications and Harmonised Standards."</a> Proceedings of the 2023 ACM Conference on Fairness, Accountability, and Transparency. 2023. </p>
+		<h5>  License </h5>	
+			<p> The tool is available under<a href="https://creativecommons.org/licenses/by-nc/4.0/"> CC BY-NC 4.0 </a></p>
+		 <h5>Acknowlegements</h5>
+		 <p>This project has received funding from the European
+			Union’s Horizon 2020 research and innovation programme under
+			the Marie Skłodowska-Curie grant agreement No 813497 (PROTECT ITN), as part of the ADAPT SFI Centre for Digital Media Technology is funded by Science Foundation Ireland through the SFI Research Centres Programme and is co-funded under the European Regional Development Fund (ERDF) through Grant#13/RC/2106_P2.</p>
+		</div>
+		</div>
+	</div>
   {% endblock %}

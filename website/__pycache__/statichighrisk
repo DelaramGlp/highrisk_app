@@ -1,0 +1,157 @@
+{% extends "base.html" %} {% block title %} High Risk AI {% endblock %} 
+{% block content %} 	
+			
+		<!-- Header -->
+				<div class="row">
+					
+					<!-- Logo -->
+					<div class="col-lg-1 col-sm-3 col-3 order-1">
+						<div class="logo_container">
+						<div class="logo"><a href="https://w3id.org/airo"><img src="https://raw.githubusercontent.com/DelaramGlp/airo/main/figures/airo-logo.png" width="100" class="img-responsive home" ></a></div>
+						</div>
+					</div>
+				</div>	
+	
+		<!-- Title -->
+			<h1 class="text-black" align-items="centre"> Is My AI System High-Risk? </h1>
+			<br>
+					
+       
+         <h5> Introduction </h5>
+         <p> This tool assists you determine whether an AI system is High-Risk according to Annex III of the <a href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=celex%3A52021PC0206">EU AI Act</a>. </p>
+         <h5>Disclaimer</h5>
+         <p> This tool only offers guidance and does not provide any legal advise. </p>
+         <p> This tool does not determine prohibited AI practices. Before using the tool, ensure your AI system does not fall under the prohibited category of AI defined in Article 5. </p>
+         <br>
+		 <h3> Checklist </h3>
+        
+        <form method="POST">
+			<div>
+			<label>System's name:</label>
+			<input name="system" id="system" placeholder="Enter system's name">
+			</div>
+
+ 		 	<div class="mb-3">
+    			<label> 1. What domain is the AI system intended to be used in?</label>
+				<br>
+				<div>
+					<form action="domain" method="post">
+						<select>
+							<option value="null"> Any </option>
+							{% for domainTerm, domainLabel in domains %}
+							<option value="{{domainTerm}}"> {{ domainLabel }}</option>
+							{% endfor %} 
+						</select>
+					</form>
+				</div>
+ 		 	</div>
+ 		 	
+ 		 	<div class="mb-3">
+    			<label>2. What is the intended purpose of the AI system?</label>
+				<br>
+    			<form action="purpose" method="post">
+					<select>
+						<option value="null"> Any </option>
+						{% for purposeTerm, purposeLabel in purposes %}
+						<option value="{{purposeTerm}}"> {{ purposeLabel }}</option>
+						{% endfor %} 
+					</select>
+				</form>
+ 		 	</div>
+ 		 	
+		
+			<div class="mb-3">
+    			<label for="capability" class="form-label"> 3. What is the capability of the AI system? </label>
+				<br>
+				<form action="capability" method="post">
+					<select>
+						<option value="null"> Any </option>
+						{% for capabilityTerm, capabilityLabel in capabilities %}
+						<option value="{{capabilityTerm}}"> {{ capabilityLabel }}</option>
+						{% endfor %} 
+					</select>
+				</form>
+ 		 	</div>   
+
+ 		 	
+ 		 	<div class="mb-3">
+    			<label for="user" class="form-label">4. Who is the intended user of the AI system?</label>
+				<br>
+    			<form action="user" method="post">
+					<select>
+						<option value="null"> Any </option>
+						{% for userTerm, userLabel in users %}
+						<option value="{{userTerm}}"> {{ userLabel }}</option>
+						{% endfor %} 
+					</select>
+				</form>
+           			 
+ 		 	</div>
+ 		 	
+			 
+ 		 	
+ 		 	<div class="mb-3">
+    			<label for="subject" class="form-label"> 5. Who is the subject of the AI system? </label>
+				<br>
+    			<select name="subject" id="idsubject" class="form-select">
+           			<option value="null"> Any </option>
+					<option value="NaturalPerson"> Natural Person</option>
+            	</select>
+ 		 	</div>  
+ 		 	
+ 		 	<!-- <div class="mb-3">
+    			<label for="environment" class="form-label"> 4. In which environment is the AI system used? </label>
+    			<select name="environment" id="idenvironment" class="form-control">
+           			<option value="myEnv"> No Specific Environment </option>
+           			<option value="InvestigationOfCriminalOffences"> Investigation of Criminal Offences </option>
+           			<option value="ProsecutionOfCriminalOffences"> Prosecution of Criminal Offences </option>
+           			<option value="DetectionOfCriminalOffences"> Detection of Criminal Offences </option>			
+            	</select>
+ 		 	</div>-->
+		<br>
+	
+		<button type="submit" class="btn btn-primary">Check whether your AI system is high-risk</button>
+		<h3 id="idresponse" class="border bg-warning" >
+		{% for message  in get_flashed_messages() %}
+			<p> {{message}}</p>	
+		{% endfor%}
+		</h3>
+        </form>
+
+           <!-- <button type="submit" class= "btn btn-outline-success d-block" onclick="submit()">Check whether your AI system is high-risk</button>
+           
+        
+            <span> 
+            <h4> Result </h4>
+            <h3 id="idresponse" class="border bg-warning" />
+            </span>
+           
+             
+        <script>
+        
+            async function submit()
+            {
+                var purpose = document.getElementById('idselpurpose').selectedOptions[0].value;
+                var domain = document.getElementById('iddomain').selectedOptions[0].value;
+                var capability = document.getElementById('idcapability').selectedOptions[0].value;
+                var user = document.getElementById('iduser').selectedOptions[0].value;
+                var subject = document.getElementById('idsubject').selectedOptions[0].value;
+               // var environment = document.getElementById ('idenvironment').selectedOptions[0].value;
+                
+                var input = { "purpose": purpose,
+                			  "domain": domain,
+                			  "capability": capability,
+                			  "user": user,
+                			  "subject": subject,};
+                			 // "environment": environment,};
+                
+               
+                const response = await fetch("/airo-app/risk", {method:"POST", body: JSON.stringify(input)});
+                const responsetxt = await response.text();
+                console.log("the answer is " + responsetxt);
+                document.getElementById('idresponse').innerHTML = responsetxt;
+            }
+        </script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>-->
+  {% endblock %}

@@ -161,6 +161,7 @@ def highrisk():
 
 #----------------------Creating RDF Graph from the user's input---------------------- 
         g = Graph()
+        empty = False
         airo = Namespace('https://w3id.org/airo#')
         vair = Namespace('https://w3id.org/vair#')
         ex = Namespace('http://example.com/ns#')
@@ -170,36 +171,37 @@ def highrisk():
         g.bind("ex",ex)
     
         g.add((systemUri,RDF.type,URIRef("https://w3id.org/airo#AISystem"))) 
-        
-        if vair_domain != "Any":
+        if vair_domain =="None" and vair_purpose=="None" and vair_capability=="None" and vair_user=="None" and vair_subject=="None":
+            empty= True
+        if vair_domain != "Other":
             g.add((systemUri, URIRef("https://w3id.org/airo#isAppliedWithinDomain"),domainUri))
             g.add((domainUri,RDF.type,vair_domainUri))
         else:
             g.add((systemUri, URIRef("https://w3id.org/airo#isAppliedWithinDomain"),domainUri))
             g.add((domainUri,RDF.type,URIRef("http://w3id.org/airo#Domain")))
 
-        if vair_purpose != "Any" :    
+        if vair_purpose != "Other" :    
             g.add((systemUri, URIRef("https://w3id.org/airo#hasPurpose"), purposeUri))
             g.add((purposeUri, RDF.type, vair_purposeUri))
         else:
             g.add((systemUri, URIRef("https://w3id.org/airo#hasPurpose"),purposeUri))
             g.add((purposeUri,RDF.type,URIRef("http://w3id.org/airo#Purpose")))    
 
-        if vair_capability != "Any":    
+        if vair_capability != "Other":    
             g.add ((systemUri, URIRef("https://w3id.org/airo#hasCapability"), capabilityUri))
             g.add((capabilityUri, RDF.type, vair_capabilityUri))
         else:
             g.add((systemUri, URIRef("https://w3id.org/airo#hasCapability"),capabilityUri))
             g.add((capabilityUri,RDF.type,URIRef("http://w3id.org/airo#Capability")))      
             
-        if vair_user != "Any":
+        if vair_user != "Other":
             g.add ((systemUri, URIRef("https://w3id.org/airo#isUsedBy"), userUri))
             g.add((userUri, RDF.type, vair_userUri))
         else:
             g.add((systemUri, URIRef("https://w3id.org/airo#isUsedBy"),userUri))
             g.add((userUri,RDF.type,URIRef("http://w3id.org/airo#Stakeholder")))      
 
-        if vair_subject != "Any":    
+        if vair_subject != "Other":    
             g.add((systemUri, URIRef("https://w3id.org/airo#hasAISubject"), subjectUri))
             g.add((subjectUri, RDF.type, vair_subjectUri))
         else:
@@ -219,15 +221,17 @@ def highrisk():
         #print (message)
 
         #Print sh:message (AI Act reference) if the system is high-risk
-        if conforms == False :
+        if empty==True :
+            flash("Please Provide more details about your AI System")    
+        elif conforms == False:
              resultMessage = report.objects(predicate=URIRef("http://www.w3.org/ns/shacl#resultMessage"))
              for m in resultMessage:
                  flash ("Your AI system is likely to be "+ m + spec , category='high-risk')
         else:
             flash("The following AI System is likely to be Not High-Risk: " +spec )
+   
+            
       
 
     #return render_template('highrisk.html', domains = domains, purposes = purposes, capabilities = capabilities, users = users)
     return render_template('highrisk.html', domains=domains, purposes = purposes, capabilities = capabilities, users = users, subjects = subjects)
-
-
