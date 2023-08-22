@@ -32,6 +32,8 @@ def airima():
 @views.route('/highrisk', methods=['GET', 'POST'])
 def highrisk():
     #----------------------Getting instances from VAIR-----------------
+    vair_purpose = Graph()
+    vair_purpose.parse("https://raw.githubusercontent.com/DelaramGlp/vair/main/vair-aia-highrisk-purpose.ttl", format="turtle")
     vair_use = Graph()
     vair_use.parse("https://raw.githubusercontent.com/DelaramGlp/vair/main/vair-useofai.ttl", format="turtle")
 
@@ -66,7 +68,7 @@ def highrisk():
                    }order by asc(UCASE(str(?purpose)))"""
    
     purposes = []
-    for row in vair_use.query(purpose_query):
+    for row in vair_purpose.query(purpose_query):
         term= getLocal(str(row.purpose))
         label = getLocal(str(row.label))
         purposes.append((term, label))
