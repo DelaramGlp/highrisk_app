@@ -171,7 +171,7 @@ def highrisk():
         g.bind("ex",ex)
     
         g.add((systemUri,RDF.type,URIRef("https://w3id.org/airo#AISystem"))) 
-        if vair_domain =="None" and vair_purpose=="None" and vair_capability=="None" and vair_user=="None" and vair_subject=="None":
+        if vair_domain =="None" or vair_purpose=="None" or vair_capability=="None" or vair_user=="None" or vair_subject=="None":
             empty= True
         if vair_domain != "Other":
             g.add((systemUri, URIRef("https://w3id.org/airo#isAppliedWithinDomain"),domainUri))
@@ -222,7 +222,7 @@ def highrisk():
 
         #Print sh:message (AI Act reference) if the system is high-risk
         if empty==True :
-            flash("Please Provide more details about your AI system")    
+            flash("Please fill in all the required fields.")    
         elif conforms == False:
              resultMessage = report.objects(predicate=URIRef("http://www.w3.org/ns/shacl#resultMessage"))
              for m in resultMessage:

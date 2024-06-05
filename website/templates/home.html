@@ -1,55 +1,131 @@
-{% extends "base.html" %} {% block title %}AI Act {% endblock %} 
+{% extends "base.html" %} {% block title %}ADAPT RegTech {% endblock %} 
 {% block content %} 
 <br>
 <br>
-<h2> About</h2>
-<p> This website includes work regarding the EU AI Act. </p>
 
-<h2>Publications</h2>
-<p> 
-    1. <a href="https://doi.org/10.3233/SSW220008">AIRO: An Ontology for Representing AI Risks Based on the Proposed EU AI Act and ISO Risk Management Standards </a>
-    <br>
-    2. <a href="https://dl.acm.org/doi/10.1145/3593013.3594050">To Be High-Risk, or Not To Be-Semantic Specifications and Implications of the AI Act's High-Risk AI Applications and Harmonised Standards </a>
-    <br>
-    3. <a href="https://link.springer.com/chapter/10.1007/978-3-031-26438-2_15">Comparison and Analysis of 3 Key AI Documents: EU’s Proposed AI Act, Assessment List for Trustworthy AI (ALTAI), and ISO/IEC 42001 AI Management System </a>
+<hgroup style="text-align: center;">
+<h1>Open Regtech Models and Tools</h1>
+<h2> ADAPT SFI Research Centre</h2>
+</hgroup>
+<p>As AI enters a new regulated era there is a growing need for open access to shared resrouces and tools that enable AI /data value chain actors, affected staekholder and oversight authorities to navigate the complexities of regulation, the protectios it aims to deliver and the economic and societal benefits it aim to unlock. This site collect open access models and tool arising from research conduct by projects and partners associated with the ADAPT Centre for digital content  technology research. </p>
 
-</p>
 
-<h2> Ontologies </h2>
-<p>
-1. AIRO: AI Risk Ontology available at <a href="https://w3id.org/airo"> https://w3id.org/airo</a>
-<br>
-2. VAIR: Voabulary of AI Risks available at <a href="https://w3id.org/vair"> https://w3id.org/vair</a>
-</p>
+<!--main-->
+<main class="container">
+    <section id="aiact">
+        <h2> The EU AI Act</h2>
+        <div class="grid">
+            
+                <article>
+                    <h4> High-Risk AI Applications </h4>
+                    <h5>Is My AI System High-Risk? </h5>
+                   <p>The tool to assist you determine whether an AI system is High-Risk according to Annex III of the EU AI Act. 
+                    Access the tool: <a href="https://regtech.adaptcentre.ie/highrisk">high-risk version</a>; <a href="https://harshp.com/ai_act_risk">extended version</a></p>
+    
+                    <figure>
+                        <img src="https://github.com/DelaramGlp/highrisk_app/blob/main/annexIII_corrigendum.jpg?raw=true">
+                    </figure>
+                    <h5>AI Risk Ontology (AIRO)</h5>
+                    <p><a href="https://w3id.org/airo">https://w3id.org/airo</a></p>
+                    <p>AIRO is an ontology for expressing risk of harm associated with AI systems based on the  EU AI Act and ISO/IEC 23894 on AI risk management.</p>
+                    <h5>Vocabulary of AI Risks (VAIR)</h5>
+                    <p><a href="https:w3id.org/vair">https:w3id.org/vair</a></p>
+                    <p>VAIR is an open vocabulary for AI risks. VAIR is intended to assist with identification and documentation of risks by providing a common vocabulary that facilitates knowledge sharing and interoperability between actors in the AI value chain. VAIR provides semantic specifications for cataloguing AI risks in a FAIR (Findable, Accessible, Interoperable, Reusable) manner. </p>
 
-<h2> Projects</h2>
-<p> 1. Is my AI System High-risk? 
-    <br>
-    a web application to determine high-risk AI systems based on Annex III of the EU AI Act.
-</p>
+                </article>
+                <aside>
+                <article>
+                    <h4> AI Cards </h4>
+                    <p> AI and risk summary card alinged with the AI Act </p>
+                    <figure>
+                        <img src="https://github.com/DelaramGlp/aicards/blob/main/AICards.png?raw=true">
+                    </figure>
 
-<h2> Contact </h2>
-<p> <b> Delaram Golpayegani</b>
-<br>PhD student, School of Computer Science and Statistics, Trinity College Dublin, ADAPT centre
-<br>
-<a href="mailto:delaram.golpayegani@adaptcentre.ie">delaram.golpayegani@adaptcentre.ie</a></p>
+                    <p><a href="https://delaramglp.github.io/aicards/example/">An example of AI Cards for an AI-based proctoring system</a> </p>
+                    <p><a href="https://delaramglp.github.io/aicards/annex_iv/">Detailed Analysis of the AI Act's technical docuementation requirments (Annex IV)</a></p>
+            
+                </article>
+                </aside>
+              
+        </div>
+        <div>
+                <article>
+                    <h4>Trustworthy AI Requriements Ontology</h4>
+                    <p><a href="https://tair.adaptcentre.ie/">https://tair.adaptcentre.ie</a></p>
+                    <p>A knowledge graph with a partial extraction of concepts and requirements from the initial draft of the AI Act (Apr’21) that pertain to obligation on the role of AI Providers. This is also mapped to concept extracted from ISO/IEC JTC1 SC42 International Standard on AI terms and concepts and the template for management system standards as prime candidates for the Act’s Harmonised Standards.</p>
+                   
+                </article>
 
-<p> <b> Harshvardhan Pandit </b>
-<br>
-Assistant Professor, School of Computing at Dublin City University, ADAPT Centre 
-<br>
-<a href="mailto:harshvardhan.pandit@adaptcentre.ie">harshvardhan.pandit@adaptcentre.ie</a>
-</p>
-<p>
-<b> Dave Lewis </b>
-<br>
-Interim Director, ADAPT Centre 
-<br>
-Associate Professor, School of Computer Science and Statistics
-<br>
-<a href="mailto:dave.lewis@adaptcentre.ie">dave.lewis@adaptcentre.ie</a>
-</p>
- 
+           
+            </div>
+
+        </section>
+
+        <section id="gdpr">
+            <h2> GDPR </h2>
+            <div class="grid">
+                <article>
+                  <h4>GDPRtEXT</h4>
+                  <p>"GDPRtEXT - GDPR as a Linked Data Resource" - presented at Extended Semantic Web Conference (ESWC 2018)</p>
+                  <p><a href="http://hdl.handle.net/2262/91559">Access publication</a></p>
+                </article>
+                <article>
+                  <h4>Data Privacy Vocabulary (DPV)</h4>
+                  <p>
+                    The Data Privacy Vocabulary (DPV) enables machine-readable metadata about the use and processing of personal data based on legislative requirements such as the General Data Protection Regulation (GDPR). 
+                  </p>
+                  <p><a href="https://w3id.org/dpv">View Data Privacy Vocabulary (DPV)</a></p>
+                </article>
+              </aside>
+            </div>
+        </section>
+
+        <section id="publications">
+            <article>
+                <h2>Publications</h2>
+                    <p> 
+                        1. "To Be High-Risk, or Not To Be—Semantic Specifications and Implications of the AI Act’s High-Risk AI Applications and Harmonised Standards". Presented at ACM FAccT 2023.<a href="https://dl.acm.org/doi/10.1145/3593013.3594050">Access here</a> <br>
+                        2.  "AIRO: An Ontology for Representing AI Risks Based on the Proposed EU AI Act and ISO Risk Management Standards". Presented at SEMANTiCS 2022. <a href="https://doi.org/10.3233/SSW220008">Access here</a>
+                        <br>
+                        3. "Comparison and Analysis of 3 Key AI Documents: EU’s Proposed AI Act, Assessment List for Trustworthy AI (ALTAI), and ISO/IEC 42001 AI Management System". Preseneted at the Irish Conference on Artificial Intelligence and Cognitive Science (AICS 2023).  <a href="https://link.springer.com/chapter/10.1007/978-3-031-26438-2_15">Access here</a>
+                    </p>
+            </article>
+        </section>
+
+        <section id="contact">
+            <article>
+            <h2> Contact </h2>
+            <div class="custom-grid">
+            <p> <b> Delaram Golpayegani</b>
+                <a href="mailto:delaram.golpayegani@adaptcentre.ie">delaram.golpayegani@adaptcentre.ie</a></p>
+                <p> <b> Harshvardhan Pandit </b><br>
+                    <a href="mailto:harshvardhan.pandit@adaptcentre.ie">harshvardhan.pandit@adaptcentre.ie</a></p>
+                    <p>
+                        <b> Dave Lewis </b><br>
+                        <a href="mailto:dave.lewis@adaptcentre.ie">dave.lewis@adaptcentre.ie</a> </p>
+                        <p>
+                        
+                                 
+                            <b> Tytti Rintamäki </b><br>
+                            <a href="mailto:tytti.rintamaki@adaptcentre.ie">tytti.rintamaki@adaptcentre.iee</a> </p>
+                        <p>
+                            <b>Julio Hernandez</b><br>
+                            <a href="mailto:julio.hernandez@adaptcentre.ie">julio.hernandez@adaptcentre.ie</a> </p>
+                        </div> 
+                           
+                    </div>
+            </article>
+        </section>
+</main>
+<footer class="container">
+    <p><small>This project has received funding from the European Union’s
+        Horizon 2020 research and innovation programme under the Marie Skłodowska-Curie
+        grant agreement No 813497 (PROTECT ITN), as part of the ADAPT SFI Centre for
+        Digital Media Technology is funded by Science Foundation Ireland through the SFI
+        Research Centres Programme and is co-funded under the European Regional Development
+        Fund (ERDF) through Grant#13/RC/2106_P2</small></p>
+    <p><small>Built with <a href="https://picocss.com">Pico</a></small></p>
+</footer>
 
 
 
