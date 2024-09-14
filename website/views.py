@@ -1,4 +1,5 @@
-from flask import Blueprint, render_template, request, flash, Markup
+from flask import Blueprint, render_template, request, flash
+from markupsafe import Markup
 
 from rdflib import Graph, URIRef, Namespace
 from rdflib.namespace import RDF, RDFS
@@ -31,7 +32,10 @@ def airima():
 
 @views.route('/highrisk', methods=['GET', 'POST'])
 def highrisk():
+
     #----------------------Getting instances from VAIR-----------------
+    '''vair = Graph()
+    vair.parse("https://raw.githubusercontent.com/DelaramGlp/vair/main/vair.ttl", format="turtle")
     vair_purpose = Graph()
     vair_purpose.parse("https://raw.githubusercontent.com/DelaramGlp/vair/main/vair-aia-highrisk-purpose.ttl", format="turtle")
     vair_use = Graph()
@@ -53,7 +57,7 @@ def highrisk():
                     order by asc(UCASE(str(?domain)))"""
    
     domains = []
-    for row in vair_use.query(domain_query):
+    for row in vair.query(domain_query):
         term= getLocal(str(row.domain))
         label = getLocal(str(row.label))
         domains.append((term, label))
@@ -89,21 +93,24 @@ def highrisk():
         label = getLocal(str(row.label))
         capabilities.append((term, label))
 
-    #------------users-----------
-    user_query="""
+    #------------deployers-----------
+    deployer_query="""
                     PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
                     PREFIX airo:<https://w3id.org/airo#>
-                    SELECT ?user ?label
-	                WHERE {?user rdfs:subClassOf* airo:AIUser.
-                            ?user  skos:prefLabel ?label .
-                    } order by asc(UCASE(str(?user)))
+                    SELECT ?deployer ?label
+	                WHERE {?deployer rdfs:subClassOf* airo:AIOperator.
+                            ?deployer  skos:prefLabel ?label .
+                    } order by asc(UCASE(str(?deployer)))
 
 """
-    users = []
-    for row in vair_stakeholder.query(user_query):
-        term= getLocal(str(row.user))
+    deployers = []
+    for row in vair_stakeholder.query(deployer_query):
+        term= getLocal(str(row.deployer))
         label = getLocal(str(row.label))
-        users.append((term, label))
+        deployers.append((term, label))
+        print("deployer: "+getLocal(str(row.deployer)))
+        
+
 
  
 
@@ -122,10 +129,9 @@ def highrisk():
         term= getLocal(str(row.subject))
         label = getLocal(str(row.label))
         subjects.append((term, label))
+        
+'''   
     
-    
-   # print([getLocal(str(row.subject)) for row in vair_stakeholder.query(subject_query)])
-
 
     #----------------------Getting user's input---------------------- 
     if request.method == 'POST':
@@ -150,9 +156,9 @@ def highrisk():
         capabilityUri = URIRef('http://example.com/ns#' + system +'capability')
         #print("___"+capabilityUri)
 
-        vair_user = request.form.get('user')
-        vair_userUri = URIRef ('https://w3id.org/vair#' + vair_user)
-        userUri = URIRef ('http://example.com/ns#' + system +'user')
+        vair_deployer = request.form.get('deployer')
+        vair_deployerUri = URIRef ('https://w3id.org/vair#' + vair_deployer)
+        deployerUri = URIRef ('http://example.com/ns#' + system +'deployer')
 
         vair_subject = request.form.get('subject')
         vair_subjectUri = URIRef ('https://w3id.org/vair#' + vair_subject)
@@ -171,7 +177,7 @@ def highrisk():
         g.bind("ex",ex)
     
         g.add((systemUri,RDF.type,URIRef("https://w3id.org/airo#AISystem"))) 
-        if vair_domain =="None" or vair_purpose=="None" or vair_capability=="None" or vair_user=="None" or vair_subject=="None":
+        if vair_domain =="None" or vair_purpose=="None" or vair_capability=="None" or vair_deployer=="None" or vair_subject=="None":
             empty= True
         if vair_domain != "Other":
             g.add((systemUri, URIRef("https://w3id.org/airo#isAppliedWithinDomain"),domainUri))
@@ -194,12 +200,12 @@ def highrisk():
             g.add((systemUri, URIRef("https://w3id.org/airo#hasCapability"),capabilityUri))
             g.add((capabilityUri,RDF.type,URIRef("http://w3id.org/airo#Capability")))      
             
-        if vair_user != "Other":
-            g.add ((systemUri, URIRef("https://w3id.org/airo#isUsedBy"), userUri))
-            g.add((userUri, RDF.type, vair_userUri))
+        if vair_deployer != "Other":
+            g.add ((systemUri, URIRef("https://w3id.org/airo#isDeployedBy"), deployerUri))
+            g.add((deployerUri, RDF.type, vair_deployerUri))
         else:
-            g.add((systemUri, URIRef("https://w3id.org/airo#isUsedBy"),userUri))
-            g.add((userUri,RDF.type,URIRef("http://w3id.org/airo#Stakeholder")))      
+            g.add((systemUri, URIRef("https://w3id.org/airo#isDeployedBy"),deployerUri))
+            g.add((deployerUri,RDF.type,URIRef("http://w3id.org/airo#Stakeholder")))      
 
         if vair_subject != "Other":    
             g.add((systemUri, URIRef("https://w3id.org/airo#hasAISubject"), subjectUri))
@@ -211,11 +217,11 @@ def highrisk():
         dg = g.serialize(format ='turtle')
         print(dg)
 
-        spec = Markup("<p> Domain:" + vair_domain + "<br> Purpose: " + vair_purpose + "<br>Capability: " + vair_capability + "<br>User: "+ vair_user + "<br>Subject: " + vair_subject +"</p>")
+        spec = Markup("<p> Domain:" + vair_domain + "<br> Purpose: " + vair_purpose + "<br>Capability: " + vair_capability + "<br>Deployer: "+ vair_deployer + "<br>Subject: " + vair_subject +"</p>")
         print(spec)
         #----------------------SHACL shape----------------------
         sg = Graph() #shacl graph
-        sg.parse("https://raw.githubusercontent.com/DelaramGlp/airo/main/high-risk-shacl/shapes-updated.ttl", format="turtle")
+        sg.parse("https://raw.githubusercontent.com/DelaramGlp/airo/main/high-risk-shacl/shapes-final.ttl", format="turtle")
 
         conforms, report, message = validate(dg, shacl_graph=sg, advanced=True, debug=False)
         #print (message)
@@ -233,5 +239,6 @@ def highrisk():
             
       
 
-    #return render_template('highrisk.html', domains = domains, purposes = purposes, capabilities = capabilities, users = users)
-    return render_template('highrisk.html', domains=domains, purposes = purposes, capabilities = capabilities, users = users, subjects = subjects)
+    #return render_template('highrisk.html', domains = domains, purposes = purposes, capabilities = capabilities, deployers = deployers)
+   # return render_template('highrisk.html', domains=domains, purposes = purposes, capabilities = capabilities, deployers = deployers, subjects = subjects)
+    return render_template('highrisk.html')

@@ -31,9 +31,20 @@
 			
 					<select name="domain" id="domain" class="custom-select2"  method="POST">
 							<option selected="selected" value="None"></option>
-							{% for domainTerm, domainLabel in domains %}
+						<!--{% for domainTerm, domainLabel in domains %}
 							<option value="{{domainTerm}}"> {{ domainLabel }}</option>
-							{% endfor %} 
+							{% endfor %} -->	
+							<option value="CriticalInfrastructure">Critical Infrastructure</option>
+							<option value="Education">Education</option>
+							<option value="Employment">Employment</option>
+							<option value="PublicService">Public Service</option>
+							<option value="PrivateService">Private Service</option>
+							<option value="LawEnforcement">Law Enforcement</option>
+							<option value="MigrationManagement">Migration Management</option>
+							<option value="AsylumManagement">Asylum Management</option>
+							<option value="BorderControlManagement">Border Control Management</option>
+							<option value="AdministrationOfJustice">Administration Of Justice</option>
+							<option value="AdministrationOfDemocraticProcesses">Administration Of Democratic Processes</option>
 							<option value="Other"> Other </option>
 						</select>
 					
@@ -44,9 +55,101 @@
     			<label class="form-font">for the purpose of </label>
     			<select name="purpose" id="purpose" class="custom-select2" style="width: 600px"  method="POST">
 						<option selected="selected" value="None"></option>
-						{% for purposeTerm, purposeLabel in purposes %}
+						<!--{% for purposeTerm, purposeLabel in purposes %}
 						<option value="{{purposeTerm}}"> {{ purposeLabel }}</option>
-						{% endfor %} 
+						{% endfor %} -->
+						<option value="RemoteIdentification">Remote Identification</option>
+						<option value="Categorisation">Categorisation</option>
+						<option value="RecognisingEmotions">Recognising Emotions</option>
+						<option value="DetectingEmotionalState">Detecting Emotional State</option>
+						<option value="ServingSafetyFunctionInOperationOfCriticalDigitalInfrastructure">Serving Safety Function In Operation Of Critical Digital Infrastructure</option>
+						<option value="ServingSafetyFunctionInManagementOfCriticalDigitalInfrastructure">Serving Safety Function In Management Of Critical Digital Infrastructure</option>
+						<option value="ServingSafetyFunctionInOperationOfRoadTraffic">Serving Safety Function In Operation Of Road Traffic</option>
+						<option value="ServingSafetyFunctionInManagementOfRoadTraffic">Serving Safety Function In Management Of Road Traffic</option>
+						<option value="ServingSafetyFunctionInOperationOfTheSupplyOfWater">Serving Safety Function In Operation Of The Supply Of Water</option>
+						<option value="ServingSafetyFunctionInManagementOfTheSupplyOfWater">Serving Safety Function In Management Of The Supply Of Water</option>
+						<option value="ServingSafetyFunctionInOperationOfTheSupplyOfGas">Serving Safety Function In Operation Of The Supply Of Gas</option>
+						<option value="ServingSafetyFunctionInManagementOfTheSupplyOfGas">Serving Safety Function In Management Of The Supply Of Gas</option>
+						<option value="ServingSafetyFunctionInOperationOfTheSupplyOfHeating">Serving Safety Function In Operation Of The Supply Of Heating</option>
+						<option value="ServingSafetyFunctionInManagementOfTheSupplyOfHeating">Serving Safety Function In Management Of The Supply Of Heating</option>
+						<option value="ServingSafetyFunctionInOperationOfTheSupplyOfElectricity">Serving Safety Function In Operation Of The Supply Of Electricity</option>
+						<option value="ServingSafetyFunctionInManagementOfTheSupplyOfElectricity">Serving Safety Function In Management Of The Supply Of Electricity</option>
+						<option value="DeterminingAccessToEducationalInstitutions">Determining Access To Educational Institutions</option>
+						<option value="DeterminingAccessToVocationalTrainingInstitutions">Determining Access To Vocational Training Institutions</option>
+						<option value="DeterminingAdmissionToEducationalInstitutions">Determining Admission To Educational Institutions</option>
+						<option value="DeterminingAdmissionToVocationalTrainingInstitutions">Determining Admission To Vocational Training Institutions</option>
+						<option value="AssigningPersonsToEducationalInstitutions">Assigning Persons To Educational Institutions</option>
+						<option value="AssigningPersonsToVocationalTrainingInstitutions">Assigning Persons To Vocational Training Institutions</option>
+						<option value="EvaluatingLearningOutcomes">Evaluating Learning Outcomes</option>
+						<option value="AssessingLevelOfEducation">Assessing Level Of Education</option>
+						<option value="AssessingAccessibleLevelOfEducation">Assessing Accessible Level Of Education</option>
+						<option value="MonitoringProhibitedBehaviourDuringTest">Monitoring Prohibited Behaviour During Test</option>
+						<option value="DetectingProhibitedBehaviourDuringTest">Detecting Prohibited Behaviour During Test</option>
+						<option value="Recruiting">Recruiting</option>
+						<option value="JobCandidateSelection">Job Candidate Selection</option>
+						<option value="PlacingTargetedJobAdvert">Placing Targeted Job Advert</option>
+						<option value="JobApplicationAnalysis">Job Application Analysis</option>
+						<option value="JobApplicationScreening">Job Application Screening</option>
+						<option value="JobApplicationFiltering">Job Application Filtering</option>
+						<option value="EvaluatingJobInterview">Evaluating Job Interview</option>
+						<option value="EvaluatingJobCandidates">Evaluating Job Candidates</option>
+						<option value="MakingDecisionOnTermsofWorkRelatedRelations">Making Decision On Terms of Work Related Relations</option>
+						<option value="MakingPromotionDecision">Making Promotion Decision</option>
+						<option value="MakingContractTerminationDecision">Making Contract Termination Decision</option>
+						<option value="MonitoringEmployeeBehaviour">Monitoring Employee Behaviour</option>
+						<option value="MonitoringEmployeePerformance">Monitoring Employee Performance</option>
+						<option value="EvaluatingEmployeeBehaviour">Evaluating Employee Behaviour</option>
+						<option value="EvaluatingEmployeePerformance">Evaluating Employee Performance</option>
+						<option value="AllocatingTasks">Allocating Tasks</option>
+						<option value="EvaluatingEligibilityForPublicAssistanceServices">Evaluating Eligibility For Public Assistance Services</option>
+						<option value="GrantingPublicAssistanceServices">Granting Public Assistance Services</option>
+						<option value="RevokingPublicAssistanceServices">Revoking Public Assistance Services</option>
+						<option value="ReclaimingPublicAssistanceServices">Reclaiming Public Assistance Services</option>
+						<option value="ReducingPublicAssistanceServices">Reducing Public Assistance Services</option>
+						<option value="EvaluatingEligibilityforHealthCareServices">Evaluating Eligibility for Health Care Services</option>
+						<option value="AssessingCreditworthiness">Assessing Creditworthiness</option>
+						<option value="DeterminingCreditScore">Determining Credit Score</option>
+						<option value="HealthInsuranceRiskAssessment">Health Insurance Risk Assessment</option>
+						<option value="HealthInsurancePricing">Health Insurance Pricing</option>
+						<option value="LifeInsuranceRiskAssessment">Life Insurance Risk Assessment</option>
+						<option value="LifeInsurancePricing">Life Insurance Pricing</option>
+						<option value="DispatchingEmergencyService">Dispatching Emergency Service</option>
+						<option value="PrioritisationOfEmergencyService">Prioritisation Of Emergency Service</option>
+						<option value="EmergancyTriage">Emergency Triage</option>
+						<option value="EvaluatingEmergencyCall">Evaluating Emergency Call</option>
+						<option value="ClassifyingEmergencyCall">Classifying Emergency Call</option>
+						<option value="AssessingRiskOfBecomingVictimOfCrime">Assessing Risk Of Becoming Victim Of Crime</option>
+						<option value="DetectingLies">Detecting Lies</option>
+						<option value="EvaluatingReliabilityOfEvidenceInInvestigationOfCriminalOffences">Evaluating Reliability Of Evidence In Investigation Of Criminal Offences</option>
+						<option value="EvaluatingReliabilityOfEvidenceInProsecutionOfCriminalOffences">Evaluating Reliability Of Evidence In Prosecution Of Criminal Offences</option>
+						<option value="AssessingRiskOfOffending">Assessing Risk Of Offending</option>
+						<option value="AssessingRiskOfReoffending">Assessing Risk Of Reoffending</option>
+						<option value="AssessingPersonalityTraits">Assessing Personality Traits</option>
+						<option value="AssessingPastCriminalBehaviour">Assessing Past Criminal Behaviour</option>
+						<option value="DetectingCriminalOffences">Detecting Criminal Offences</option>
+						<option value="InvestigatingCriminalOffences">Investigating Criminal Offences</option>
+						<option value="ProsecutingCriminalOffences">Prosecuting Criminal Offences</option>
+						<option value="AssessingPeopleRelatedRisk">Assessing People Related Risk</option>
+						<option value="AssessingRiskOfIrregularImmigration">Assessing Risk Of Irregular Immigration</option>
+						<option value="AssessingSecurityRisk">Assessing Security Risk</option>
+						<option value="AssessingHealthRisk">Assessing Health Risk</option>
+						<option value="ExaminingAsylumApplication">Examining Asylum Application</option>
+						<option value="ExaminingVisaApplication">Examining Visa Application</option>
+						<option value="ExaminingResidencePermitsApplication">Examining Residence Permits Application</option>
+						<option value="ExaminingMigrationRelatedComplaints">Examining Migration Related Complaints</option>
+						<option value="EvaluatingReliabilityOfEvidenceInMigarationRelatedApplications">Evaluating Reliability Of Evidence In Migration Related Applications</option>
+						<option value="IdentiftyingIndividuals">Identifying Individuals</option>
+						<option value="RecognisingIndividuals">Recognising Individuals</option>
+						<option value="DetectingIndividuals">Detecting Individuals</option>
+						<option value="ResearchingFacts">Researching Facts</option>
+						<option value="ApplyingTheLawToFacts">Applying The Law To Facts</option>
+						<option value="ResearchingLaw">Researching Law</option>
+						<option value="InterpretingFacts">Interpreting Facts</option>
+						<option value="InterpretingLaw">Interpreting Law</option>
+						<option value="SettlingDispute">Settling Dispute</option>
+						<option value="InfluencingElectionOutcome">Influencing Election Outcome</option>
+						<option value="InfluencingReferendumOutcome">Influencing Referendum Outcome</option>
+						<option value="InfluencingVotingBehaviour">Influencing Voting Behaviour</option>		
 						<option value="Other"> Other </option>
 					</select>
 				<label class="form-font">,</label>	
@@ -58,9 +161,18 @@
     			<label for="capability" class="form-font"> has the capability of   </label>
 				<select name="capability" id="capability" class="custom-select2"  method="POST">
 						<option selected="selected" value="None"></option>
-						{% for capabilityTerm, capabilityLabel in capabilities %}
+						<!--{% for capabilityTerm, capabilityLabel in capabilities %}
 						<option value="{{capabilityTerm}}"> {{ capabilityLabel }}</option>
-						{% endfor %} 
+						{% endfor %} -->
+						<option value="BiometricIdentification">Biometric Identification</option>
+						<option value="BiometricCategorisation">Biometric Categorisation</option>
+						<option value="SensitiveAttributeInference">Sensitive Attribute Inference</option>
+						<option value="EmotionRecognition">Emotion Recognition</option>
+						<option value="BiometricsBasedEmotionRecognition">Biometrics Based Emotion Recognition</option>
+						<option value="BehaviourAnalysis">Behaviour Analysis</option>
+						<option value="PersonalityTraitsAnalysis">Personality Traits Analysis</option>
+						<option value="LieDetection">Lie Detection</option>
+						<option value="Profiling">Profiling</option>
 						<option value="Other"> Other </option>
 					</select>
 				<label class="form-font">.</label>	
@@ -68,13 +180,30 @@
 
  		 	
  		 	<div class="mb-3">
-    			<label for="user" class="form-font">The system is intended to be used by   </label>
+    			<label for="deployer" class="form-font">The system is intended to be deployed by   </label>
 
-    			<select name="user" id="user" class="custom-select2"  method="POST">
+    			<select name="deployer" id="deployer" class="custom-select2"  method="POST">
 					<option selected="selected" value="None"></option>
-					{% for userTerm, userLabel in users %}
-					<option value="{{userTerm}}"> {{ userLabel }}</option>
-						{% endfor %} 
+					<!--{% for deployerTerm, deployerLabel in deployers %}
+						<option value="{{deployerTerm}}"> {{ deployerLabel }}</option>
+						{% endfor %} -->
+					<option value="EducationalInstitution">Educational Institution</option>
+					<option value="VocationalTrainingInstitution">Vocational Training Institution</option>
+					<option value="PublicAuthority">Public Authority</option>
+					<option value="PublicAuthorityAgent">Public Authority Agent</option>
+					<option value="EmergencyServiceProvider">Emergency Service Provider</option>
+					<option value="EmergencyHealthCareProvider">Emergency Health Care Provider</option>
+					<option value="Police">Police</option>
+					<option value="FireBrigade">Fire Brigade</option>
+					<option value="MedicalAidProvider">Medical Aid Provider</option>
+					<option value="LawEnforcementAuthority">Law Enforcement Authority</option>
+					<option value="LawEnforcementAuthorityAgent">Law Enforcement Authority Agent</option>
+					<option value="EUInstitution">EU Institution</option>
+					<option value="EUAgency">EU Agency</option>
+					<option value="EUOffice">EU Office</option>
+					<option value="EUBody">EU Body</option>
+					<option value="JudicialAuthority">Judicial Authority</option>
+					<option value="JudicialAuthorityAgent">Judicial Authority Agent</option>	
 					<option value="Other"> Other </option>
 					</select> 
 					
@@ -88,22 +217,30 @@
 				
     			<select name="subject" id="subject" class="custom-select2" method="POST">
 					<option selected="selected" value="None"></option>
-						{% for subjectTerm, subjectLabel in subjects %}
+					<!---	{% for subjectTerm, subjectLabel in subjects %}
 					<option value="{{subjectTerm}}"> {{ subjectLabel }}</option>
-						{% endfor %} 
+						{% endfor %} -->
+						<option value="NaturalPerson">Natural Person</option>
+						<option value="CourseAttendee">Course Attendee</option>
+						<option value="Student">Student</option>
+						<option value="JobApplicant">Job Applicant</option>
+						<option value="PotentialJobApplicant">Potential Job Applicant</option>
+						<option value="JobCandidate">Job Candidate</option>
+						<option value="Employee">Employee</option>
+						<option value="PublicServicesApplicant">Public Services Applicant</option>
+						<option value="Family">Family</option>
+						<option value="PotentialPublicServicesApplicant">Potential Public Services Applicant</option>
+						<option value="PublicServicesRecipient">Public Services Recipient</option>
+						<option value="Group">Group</option>
+						<option value="IndividualIntendsToEnterState">Individual Intends To Enter State</option>
+						<option value="IndividualEnteredState">Individual Entered State</option>
+						<option value="AsylumSeeker">Asylum Seeker</option>
+						<option value="VisaApplicant">Visa Applicant</option>
+						<option value="ResidencePermitApplicant">Residence Permit Applicant</option>
 						<option value="Other"> Other </option>
             	</select>
  		 	</div>  
  		 	
- 		 	<!-- <div class="mb-3">
-    			<label for="environment" class="form-label"> 4. In which environment is the AI system used? </label>
-    			<select name="environment" id="idenvironment" class="form-control">
-           			<option value="myEnv"> No Specific Environment </option>
-           			<option value="InvestigationOfCriminalOffences"> Investigation of Criminal Offences </option>
-           			<option value="ProsecutionOfCriminalOffences"> Prosecution of Criminal Offences </option>
-           			<option value="DetectionOfCriminalOffences"> Detection of Criminal Offences </option>			
-            	</select>
- 		 	</div>-->
 		<br>
 		<div class="wrapper">
 		<button type="submit" class="custom-button"> Check whether your AI system is high-risk</button>
